@@ -1,0 +1,16 @@
+---
+title: "Syllabus"
+output: html_document
+author:
+- April M. Wright
+
+---
+
+# For today, we will be talking about expectations
+
+This course will cover the basics of: Data management in a computational framework.
+
+_Why_ do we want to do that?  
+    - Convenience: The computer is much more effective at doing repetitive tasks than our brains are  
+    - Reproducibility: A computer stores records of what we have done more effectively than our brains do  
+    - Flexibility: When you read a paper, and they're using the most cutting edge tools, those tools are probably computational tools.
