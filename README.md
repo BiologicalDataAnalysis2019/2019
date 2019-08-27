@@ -6,7 +6,7 @@
 Lectures will be posted the day before they are given by 5 pm.
 
 
-| Week | Topic | Due |
+| Week | Topic | Posted |
 |:-------:|---------------|--------------------------------|
 | Week of Aug. 20 | Introduction to R and RStudio | Nothing |
 | Week of Aug. 26 | Working with Data I | HW 1 |
