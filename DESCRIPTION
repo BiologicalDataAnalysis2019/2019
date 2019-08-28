@@ -9,13 +9,7 @@ License: MIT + file LICENSE
 Depends:
 	shiny
 Imports:
-    phangorn,
-    phytools,
-    ape,
-    ggtree,
     ggplot2,
-    FossilSim,
-    alignfigR
 Suggests:
     knitr,
     testthat,
