@@ -1,3 +1,8 @@
+---
+title: "Starting with R"
+author: "Data Carpentry contributors"
+minutes: 20
+---
 # RStudio
 
 We're now all going to log in to the class _server_. A server is a remote computer - this enables us to do computing tasks without having to use up our own compute resources. It also enables me, as the professor, to control the user environment, and ensure everyone gets the same user experience.
