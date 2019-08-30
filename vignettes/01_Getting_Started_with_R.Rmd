@@ -317,7 +317,7 @@ the `c()` function. For example we can create a vector of animal weights and ass
 it to a new object `weight_g`:
 
 ```{r, purl = FALSE}
-weight_g <- c(50, 60, 65, 82)
+weight_g <- c(50, 60, 62.5, 65, 82, 90)
 weight_g
 ```
 
@@ -475,7 +475,7 @@ or several indices in square brackets. For instance:
 ```{r, results = 'show', purl = FALSE}
 animals <- c("mouse", "rat", "dog", "cat")
 animals[2]
-animals[c(3, 2)]
+animals[c(2, 3)]
 ```
 
 We can also repeat the indices to create an object with more elements than the

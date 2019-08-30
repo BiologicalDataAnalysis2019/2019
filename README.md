@@ -2,8 +2,11 @@
 
 # Schedule
 
+[RStudio Cloud](https://rstudio.cloud/spaces/27172/projects)  
 
 Lectures will be posted the day before they are given by 5 pm.
+
+[RStudioCloud](https://rstudio.cloud/spaces/27172/projects)
 
 
 | Week | Topic | Posted |
