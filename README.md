@@ -6,13 +6,11 @@
 
 Lectures will be posted the day before they are given by 5 pm.
 
-[RStudioCloud](https://rstudio.cloud/spaces/27172/projects)
-
 
 | Week | Topic | Posted |
 |:-------:|---------------|--------------------------------|
-| Week of Aug. 20 | Introduction to R and RStudio | Nothing |
-| Week of Aug. 26 | Working with Data I | HW 1 |
+| Week of Aug. 20 | [Introduction to R and RStudio](https://biologicaldataanalysis2019.github.io/2019/articles/01_Getting_Started_with_R.html) | Nothing |
+| Week of Aug. 26 | [Working with Data I](https://biologicaldataanalysis2019.github.io/2019/articles/02_Starting_with_Data.html) | [HW 1](https://biologicaldataanalysis2019.github.io/2019/articles/homeworks/HomeworkOne.html) |
 | Week of Sept. 2 | Working with Data II | HW 2 |
 | Week of Sept. 9 | Visualization, Project 1 due  | Project 1 |
 | Week of Sept 16 | Project Structuring | HW 4 |
