@@ -70,7 +70,7 @@ Enter your explanation here:
 
 I have written some code to calculate the mean of the hindfoot. But it's not working! Correct my code. 
 
-```{r}
+```{r eval=FALSE}
 surveys <- read.csv("/cloud/project/data/surveys.csv")
 hindfoot_vector <- surveys[7]
 hindfoot_mean <- (sum(hindfoot_vector)/length(hindfoot_vector))
