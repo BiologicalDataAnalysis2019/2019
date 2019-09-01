@@ -5,6 +5,16 @@ output: html_document
 
 # Homework One: Due Sept. 6 at 5 pm.
 
+First, download your homework. In your RStudio, enter:
+
+```{r}
+dir.create("/cloud/project/homeworks")  
+download.file("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2019/master/homeworks/HomeworkOne.Rmd", destfile = "/cloud/project/homeworks/HomeworkOne.Rmd")
+```
+
+Your homework will now be located in a directory called `homeworks`.
+
+
 In your RStudio interface, you will note that there is now a "Homeworks" directory. In it, you will find "HomeworkOne.Rmd". In your RStudio instance, open it.
 
 Each question will direct you to perform a task. Each question that expects code as an answer will have a space for you to enter the code. 
