@@ -1,0 +1,70 @@
+---
+title: "Exploration"
+author: April Wright
+minutes: 90
+output: html_document
+---
+
+# rNOAA
+
+In order to test our hypothesis, we are going to get some climate data from NOAA.
+
+```{r}
+
+install.packages("rnoaa")
+
+```
+
+Next, we will get an API key for accessing government data. Go to [this](https://www.ncdc.noaa.gov/cdo-web/token) website to obtain one. We will save this key in a file called `.rprofile`.
+API keys are basically like passwords between ourselves and a website. They enable us to access data securely.
+
+Once this is complete, we can use the package. Here is the first command you will use:
+
+```{r, eval = FALSE}
+library(rnoaa)
+ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
+```
+
+
+What information do you think you should get from this command? 
+
+We can get local weather, basically. But we don't really know what weather station we need! Let's see if we can find out. First, let's install the `lawn` package. 
+
+```{r, eval = FALSE}
+
+install.packages("lawn", dependencies = TRUE)
+```
+
+Now we'll try using it.
+
+```{r, eval = FALSE}
+
+library("lawn")
+lawn_bbox_polygon(c(-122.2047, 47.5204, -122.1065, 47.6139)) %>% view
+```
+
+How could you use Google Maps to get the information to make a box that covers Portal, AZ? Try it!
+
+
+```{r, eval = FALSE}
+
+library("lawn")
+lawn_bbox_polygon(c(-109.2047, 32, -108, 31)) %>% view
+```
+
+OK, let's give those coordinates to rNOAA and see if we have weather stations in there.
+
+```{r, eval = FALSE}
+ncdc_stations(extent = c(Your coordinates here!))
+```
+
+Does this work? If no, try expanding.
+
+Now, once you have your base station, try pulling the data for it:
+
+```{r, eval = FALSE}
+ncdc(datasetid='NORMAL_DLY', stationid=?, datatypeid=?, startdate = ?, enddate = ?)
+
+```
+
+Have a look at the surveys data set to see when you should start and stop.
