@@ -1,5 +1,5 @@
 ---
-title: "Exploration"
+title: "Exploration Hands-On"
 author: April Wright
 minutes: 90
 output: html_document
@@ -49,7 +49,7 @@ How could you use Google Maps to get the information to make a box that covers P
 ```{r, eval = FALSE}
 
 library("lawn")
-lawn_bbox_polygon(c(-109.2047, 32, -108, 31)) %>% view
+lawn_bbox_polygon(c(-114, 32, -115, 31)) %>% view
 ```
 
 OK, let's give those coordinates to rNOAA and see if we have weather stations in there.
@@ -68,3 +68,44 @@ ncdc(datasetid='NORMAL_DLY', stationid=?, datatypeid=?, startdate = ?, enddate =
 ```
 
 Have a look at the surveys data set to see when you should start and stop.
+
+We then found a good station and pulled the minimum and maximum temperatures for all dates in the database:
+
+```{r, eval = FALSE}
+
+temp_data <- meteo_tidy_ghcnd(stationid = "USW00003145", var = c("tmin", "tmax"))
+
+```
+
+And converted the temperatures to Fahrenheit while plotting them to get a sense of temperature variation over time: 
+
+```{r, eval = FALSE}
+
+ggplot(temp_data, mapping = aes(x = date, y=tmin*4/9)) + geom_point() 
+```
+
+
+And we fit a linear model to see if temperature was increasing over time:
+
+```{r, eval = FALSE}
+
+lm(date~tmax, data=temp_data)
+ggplot(temp_data, mapping = aes(x = date, y=(tmax*4/9)-32)) + geom_line() + geom_smooth(method='lm')
+write_csv(x = temp_data, "data_output/noaa_data.csv")
+```
+
+We will want to merge these data with the data from `surveys.csv` to look at mammal size trends over time. Which means we need a column on which to merge. Dates make sense. So then, we massaged the dates in `surveys.csv` into a more usable format.
+
+```{r, eval = FALSE}
+
+surveys <- read_csv("data_output/surveys_complete.csv")
+library(lubridate)
+new_surveys <- surveys %>%
+mutate(date = make_date(year, month, day))
+write_csv(x = new_surveys, "data_output/date_conversion.csv")
+```
+
+
+Now, we'll merge the two data sources. Have a look at the `merge` function. Try it.
+
+Next, plot an animal body size measure by temp. Is there a relationship? What about body size measures by date?

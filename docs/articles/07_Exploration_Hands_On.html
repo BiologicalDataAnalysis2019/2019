@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exploration • compbio2019</title>
+<title>Exploration Hands-On • compbio2019</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Exploration">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Exploration Hands-On">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -74,7 +74,7 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
-      <a href="../articles/07_Exploration_Hands_On.html">Exploration</a>
+      <a href="../articles/07_Exploration_Hands_On.html">Exploration Hands-On</a>
     </li>
   </ul>
 </li>
@@ -91,7 +91,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Exploration</h1>
+      <h1>Exploration Hands-On</h1>
                         <h4 class="author">April Wright</h4>
             
       
@@ -112,7 +112,7 @@
 <p>Next, we will get an API key for accessing government data. Go to <a href="https://www.ncdc.noaa.gov/cdo-web/token">this</a> website to obtain one. We will save this key in a file called <code>.rprofile</code>. API keys are basically like passwords between ourselves and a website. They enable us to access data securely.</p>
 <p>Once this is complete, we can use the package. Here is the first command you will use:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rnoaa)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/rnoaa/topics/ncdc_locs">ncdc_locs</a></span>(<span class="dt">locationcategoryid=</span><span class="st">'CITY'</span>, <span class="dt">sortfield=</span><span class="st">'name'</span>, <span class="dt">sortorder=</span><span class="st">'desc'</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://docs.ropensci.org/rnoaa/reference/ncdc_locs.html">ncdc_locs</a></span>(<span class="dt">locationcategoryid=</span><span class="st">'CITY'</span>, <span class="dt">sortfield=</span><span class="st">'name'</span>, <span class="dt">sortorder=</span><span class="st">'desc'</span>)</a></code></pre></div>
 <p>What information do you think you should get from this command?</p>
 <p>We can get local weather, basically. But we don’t really know what weather station we need! Let’s see if we can find out. First, let’s install the <code>lawn</code> package.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"lawn"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -121,13 +121,29 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/lawn/topics/lawn_bbox_polygon">lawn_bbox_polygon</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">122.2047</span>, <span class="fl">47.5204</span>, <span class="fl">-122.1065</span>, <span class="fl">47.6139</span>)) <span class="op">%&gt;%</span><span class="st"> </span>view</a></code></pre></div>
 <p>How could you use Google Maps to get the information to make a box that covers Portal, AZ? Try it!</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"lawn"</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/lawn/topics/lawn_bbox_polygon">lawn_bbox_polygon</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">109.2047</span>, <span class="dv">32</span>, <span class="dv">-108</span>, <span class="dv">31</span>)) <span class="op">%&gt;%</span><span class="st"> </span>view</a></code></pre></div>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/lawn/topics/lawn_bbox_polygon">lawn_bbox_polygon</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">114</span>, <span class="dv">32</span>, <span class="dv">-115</span>, <span class="dv">31</span>)) <span class="op">%&gt;%</span><span class="st"> </span>view</a></code></pre></div>
 <p>OK, let’s give those coordinates to rNOAA and see if we have weather stations in there.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/rnoaa/topics/ncdc_stations">ncdc_stations</a></span>(<span class="dt">extent =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(Your coordinates here<span class="op">!</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://docs.ropensci.org/rnoaa/reference/ncdc_stations.html">ncdc_stations</a></span>(<span class="dt">extent =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(Your coordinates here<span class="op">!</span>))</a></code></pre></div>
 <p>Does this work? If no, try expanding.</p>
 <p>Now, once you have your base station, try pulling the data for it:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/rnoaa/topics/ncdc">ncdc</a></span>(<span class="dt">datasetid=</span><span class="st">'NORMAL_DLY'</span>, <span class="dt">stationid=</span>?, <span class="dt">datatypeid=</span>?, <span class="dt">startdate =</span> ?, <span class="dt">enddate =</span> ?)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://docs.ropensci.org/rnoaa/reference/ncdc.html">ncdc</a></span>(<span class="dt">datasetid=</span><span class="st">'NORMAL_DLY'</span>, <span class="dt">stationid=</span>?, <span class="dt">datatypeid=</span>?, <span class="dt">startdate =</span> ?, <span class="dt">enddate =</span> ?)</a></code></pre></div>
 <p>Have a look at the surveys data set to see when you should start and stop.</p>
+<p>We then found a good station and pulled the minimum and maximum temperatures for all dates in the database:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">temp_data &lt;-<span class="st"> </span><span class="kw"><a href="https://docs.ropensci.org/rnoaa/reference/meteo_tidy_ghcnd.html">meteo_tidy_ghcnd</a></span>(<span class="dt">stationid =</span> <span class="st">"USW00003145"</span>, <span class="dt">var =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"tmin"</span>, <span class="st">"tmax"</span>))</a></code></pre></div>
+<p>And converted the temperatures to Fahrenheit while plotting them to get a sense of temperature variation over time:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(temp_data, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y=</span>tmin<span class="op">*</span><span class="dv">4</span><span class="op">/</span><span class="dv">9</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() </a></code></pre></div>
+<p>And we fit a linear model to see if temperature was increasing over time:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(date<span class="op">~</span>tmax, <span class="dt">data=</span>temp_data)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">ggplot</span>(temp_data, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y=</span>(tmax<span class="op">*</span><span class="dv">4</span><span class="op">/</span><span class="dv">9</span>)<span class="op">-</span><span class="dv">32</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">'lm'</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">write_csv</span>(<span class="dt">x =</span> temp_data, <span class="st">"data_output/noaa_data.csv"</span>)</a></code></pre></div>
+<p>We will want to merge these data with the data from <code>surveys.csv</code> to look at mammal size trends over time. Which means we need a column on which to merge. Dates make sense. So then, we massaged the dates in <code>surveys.csv</code> into a more usable format.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">surveys &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">"data_output/surveys_complete.csv"</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lubridate)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">new_surveys &lt;-<span class="st"> </span>surveys <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw"><a href="http://lubridate.tidyverse.org/reference/make_datetime.html">make_date</a></span>(year, month, day))</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">write_csv</span>(<span class="dt">x =</span> new_surveys, <span class="st">"data_output/date_conversion.csv"</span>)</a></code></pre></div>
+<p>Now, we’ll merge the two data sources. Have a look at the <code>merge</code> function. Try it.</p>
+<p>Next, plot an animal body size measure by temp. Is there a relationship? What about body size measures by date?</p>
 </div>
   </div>
 
