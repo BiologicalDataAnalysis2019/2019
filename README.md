@@ -13,9 +13,9 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Aug. 26 | [Working with Data I](https://biologicaldataanalysis2019.github.io/2019/articles/02_Starting_with_Data.html) | [HW 1](https://biologicaldataanalysis2019.github.io/2019/articles/homeworks/HomeworkOne.html) |
 | Week of Sept. 2 | [Working with Data II](https://biologicaldataanalysis2019.github.io/2019/articles/03_Manipulating_Data.html) | [HW 2](https://biologicaldataanalysis2019.github.io/2019/articles/homeworks/HomeworkTwo.html) |
 | Week of Sept. 9 | [Visualization](https://biologicaldataanalysis2019.github.io/2019/articles/04-plotting.html)  | [Project 1](https://github.com/BiologicalDataAnalysis2019/2019/blob/master/projects/project_one/ProjectOneUndergrads.Rmd) |
-| Week of Sept 16 | Project Structuring | HW 4 |
-| Week of Sept 24 | [Programming I](https://biologicaldataanalysis2019.github.io/2019/articles/06_Exploration_Setup.html) | HW 5 |
-| Week of Sept. 31 | Revision management | HW 6 |
+| Week of Sept 16 | Project Structuring | Nothing |
+| Week of Sept 24 | [Programming I](https://biologicaldataanalysis2019.github.io/2019/articles/06_Exploration_Setup.html) | [HW3](https://biologicaldataanalysis2019.github.io/2019/articles/homeworks/HomeworkThree.html) |
+| Week of Sept. 31 | [Final Spreadsheet Exploration](https://biologicaldataanalysis2019.github.io/2019/articles/07_Exploration_Hands_On.html)| HW3 |
 | Week of Oct 7 | Programming II | HW 7 |
 | Week of Oct 14 | Project II due  | Project II |
 | Week of Oct 21 | Making an R Package  | HW 8 |
