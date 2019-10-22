@@ -96,8 +96,8 @@ write_csv(x = temp_data, "data_output/noaa_data.csv")
 
 We will want to merge these data with the data from `surveys.csv` to look at mammal size trends over time. Which means we need a column on which to merge. Dates make sense. So then, we massaged the dates in `surveys.csv` into a more usable format.
 
-```{r, eval = FALSE}
-
+```{r, eval = TRUE}
+library(tidyverse)
 surveys <- read_csv("data_output/surveys_complete.csv")
 library(lubridate)
 new_surveys <- surveys %>%
@@ -108,4 +108,15 @@ write_csv(x = new_surveys, "data_output/date_conversion.csv")
 
 Now, we'll merge the two data sources. Have a look at the `merge` function. Try it.
 
+```{r, eval = TRUE}
+noaa_data <- read_csv("data_output/noaa_data.csv")
+merged_data <- merge(noaa_data , new_surveys)
+```
+
+
+
 Next, plot an animal body size measure by temp. Is there a relationship? What about body size measures by date?
+
+```{r, eval = TRUE}
+ggplot(merged_data, mapping = aes(x = tmin, y = hindfoot_length)) + geom_point(aes(alpha = 0.1, color = sex)) + facet_grid(cols  = vars(species_id)) + geom_smooth(aes(group=sex), method='lm')
+```

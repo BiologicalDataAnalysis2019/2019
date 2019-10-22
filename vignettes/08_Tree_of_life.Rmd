@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 First, we need to do some installs.
 
-```{r cars}
+```{r, eval = FALSE}
 install.packages("devtools")
 devtools::install_github("ropensci/rotl")
 devtools::install_github("ropensci/traits")
@@ -86,12 +86,11 @@ Now, let's look at this file. What do we notice about it?
 
 All right, let's move on to trying to write a function that will return all IDs for all of the ants.
 
-```{r}
+```{r, include = TRUE, eval = FALSE}
 
 search_year <- function(ant){
-    search_returns <- c()
-    query <- paste0(ant, " AND ", "2012:2019[PDAT]")
-    search_returns[ant] <- c(entrez_search(db="Nucleotide", term=query, retmax=20,api_key ="96b569c049fe3d3055c5b747112dfec84308"))
+    query <- paste0(ant, " AND ", "2018:2019[PDAT]")
+    search_returns <- c(entrez_search(db="Nucleotide", term=query, retmax=20,api_key ="96b569c049fe3d3055c5b747112dfec84308"))
   return(search_returns)
 }
 
@@ -102,10 +101,65 @@ labels <- sapply(ants,search_year,  USE.NAMES = T)
 
 
 ```
+Have a look at ?sapply. Talk to a partner and see if you can figure out what sapply does. 
 
-And finally, let's write one, together to pull sequences for all of them.
+So what is the problem with this output? It's hard to parse - let's make it easier to pull data for one taxon at a time.
 
-```{r}
+```{r, include = TRUE, eval = FALSE}
+
+search_year <- function(ant){
+    search_returns = c()
+    query <- paste0(ant, " AND ", "2018:2019[PDAT]")
+    search_returns[ant] <- c(entrez_search(db="Nucleotide", term=query, retmax=20,api_key ="96b569c049fe3d3055c5b747112dfec84308"))
+  return(search_returns)
+}
+
+
+ants <- as.vector(resolved_names$unique_name)
+
+labels <- sapply(ants,search_year,  USE.NAMES = T)
+
+```
+
+There's one remaining problem, though. Have a look at your outputs. How do you think we can fix this one? Let's have a look at when papers related to Xymmer were published:
+
+```{r, include = TRUE, eval = FALSE}
+xymmer_papers <- entrez_search(db="pmc", term="Xymmer", retmax=20, rettype= "text", api_key ="96b569c049fe3d3055c5b747112dfec84308")
+xymmer_papers <- entrez_fetch(db="pmc", term="Xymmer", id = xymmer_papers$ids, retmax=20, rettype= "text", api_key ="96b569c049fe3d3055c5b747112dfec84308")
+```
+
+Does this give you a hint about something that needs to change to get more data? 
+
+```{r, include = TRUE, eval = FALSE}
+
+search_year <- function(ant){
+    search_returns = c()
+    query <- paste0(ant, " AND ", "2018:2019[PDAT]")
+    search_returns[ant] <- c(entrez_search(db="Nucleotide", term=query, retmax=20,api_key ="96b569c049fe3d3055c5b747112dfec84308"))
+  return(search_returns)
+}
+
+
+ants <- as.vector(resolved_names$unique_name)
+
+labels <- sapply(ants,search_year,  USE.NAMES = T)
+
+```
+
+Now, we're going to get the genetc data.
+
+```{r, eval = FALSE}
+
+search_seq <- function(ant){
+     recs[ant] <- entrez_fetch(db="nuccore", id = ant,
+                          rettype="fasta", retmax=10)
+     cat(recs, file="Ants.seqs.fasta", append=TRUE)
+
+  return(recs)
+}
+
+
+seq_returns <- sapply(labels, search_seq,  USE.NAMES = T)
 
 
 ```

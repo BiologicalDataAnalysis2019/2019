@@ -79,6 +79,9 @@
     <li>
       <a href="../articles/08_Tree_of_life.html">GeneticData</a>
     </li>
+    <li>
+      <a href="../articles/09_GBIF_and_Location.html">GBIF And Spatial Data</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -108,21 +111,13 @@
 <h2 class="hasAnchor">
 <a href="#the-tree-of-life" class="anchor"></a>The Tree of Life</h2>
 <p>First, we need to do some installs.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a></code></pre></div>
-<pre><code>## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
-## (as 'lib' is unspecified)</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"ropensci/rotl"</span>)</a></code></pre></div>
-<pre><code>## Skipping install of 'rotl' from a github remote, the SHA1 (8fb5a4c5) has not changed since last install.
-##   Use `force = TRUE` to force installation</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"ropensci/traits"</span>)</a></code></pre></div>
-<pre><code>## Skipping install of 'traits' from a github remote, the SHA1 (b3c53f2b) has not changed since last install.
-##   Use `force = TRUE` to force installation</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">'phylotaR'</span>)</a></code></pre></div>
-<pre><code>## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
-## (as 'lib' is unspecified)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"ropensci/rotl"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"ropensci/traits"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">'phylotaR'</span>)</a></code></pre></div>
 <p>Now, load your packages:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rotl)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(phylotaR)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rotl)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(phylotaR)</a></code></pre></div>
 </div>
 <div id="open-tree" class="section level2">
 <h2 class="hasAnchor">
@@ -158,30 +153,29 @@
 ## 6              1
 ## 7              1</code></pre>
 <p>Try to view them on a tree:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">tr &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rotl/topics/tol_induced_subtree">tol_induced_subtree</a></span>(<span class="dt">ott_ids =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/rotl/topics/taxonomy-methods">ott_id</a></span>(resolved_names))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">tr &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rotl/topics/tol_induced_subtree">tol_induced_subtree</a></span>(<span class="dt">ott_ids =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/rotl/topics/taxonomy-methods">ott_id</a></span>(resolved_names))</a></code></pre></div>
 <pre><code>## 
-Progress [----------------------------------] 0/44 (  0%) ?s
-Progress [================================] 44/44 (100%)  0s
+Progress [----------------------------------] 0/43 (  0%) ?s
+Progress [================================] 43/43 (100%)  0s
                                                             </code></pre>
 <pre><code>## Warning in collapse_singles(tr, show_progress): Dropping singleton
 ## nodes with labels: mrcaott1682ott35311, mrcaott1682ott34821,
 ## mrcaott34821ott950983, Aneuretinae ott393261, mrcaott4706ott5525,
 ## mrcaott5525ott8038, mrcaott8038ott8685, mrcaott8685ott36581,
-## mrcaott8685ott26303, mrcaott26303ott157602, mrcaott26303ott86888,
-## mrcaott86888ott129302, Attini ott344333, mrcaott114767ott116619,
-## mrcaott114767ott114779, mrcaott114779ott148996, mrcaott148996ott819467,
-## mrcaott148996ott150184, mrcaott148996ott157606, mrcaott148996ott409299,
-## mrcaott48019ott671955, Ectatomminae ott327970, mrcaott48019ott162057,
-## mrcaott7439ott5553505, mrcaott7439ott50578, mrcaott7439ott165217,
-## mrcaott7439ott15418, mrcaott15418ott120483, mrcaott15418ott150187,
-## mrcaott15418ott169913, Aenictinae ott919078, Aenictini ott212872,
-## mrcaott17752ott97752, mrcaott17752ott150176, mrcaott150176ott1037289,
-## mrcaott150176ott4539262, Agroecomyrmecinae ott504610,
-## mrcaott97755ott149123, mrcaott149123ott452719, mrcaott149123ott739132,
-## mrcaott149123ott503313, mrcaott503313ott928530, mrcaott928530ott6280946,
-## Martialinae ott334635</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tr)</a></code></pre></div>
-<p><img src="08_Tree_of_life_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+## mrcaott8685ott56535, mrcaott8685ott72729, mrcaott8685ott86888,
+## mrcaott86888ott129302, Attini ott344333, mrcaott114767ott114779,
+## mrcaott114779ott339738, mrcaott114779ott116619, mrcaott116619ott148996,
+## mrcaott148996ott1071522, mrcaott148996ott150184, mrcaott148996ott339763,
+## mrcaott148996ott409299, mrcaott48019ott671955, Ectatomminae ott327970,
+## mrcaott48019ott162057, Dorylinae ott161685, mrcaott7438ott7439,
+## mrcaott7439ott165217, mrcaott7439ott15430, mrcaott15430ott120483,
+## mrcaott15430ott150187, mrcaott15430ott169913, mrcaott17752ott97752,
+## mrcaott17752ott150176, mrcaott150176ott1037289, mrcaott150176ott4539262,
+## Agroecomyrmecinae ott504610, mrcaott97755ott149123, mrcaott149123ott452719,
+## mrcaott149123ott739132, mrcaott149123ott503313, mrcaott503313ott928530,
+## mrcaott928530ott6280946, Martialinae ott334635</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tr)</a></code></pre></div>
+<p><img src="08_Tree_of_life_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>I’m a little surprised by this tree.</p>
 </div>
 <div id="looking-for-data" class="section level2">
@@ -189,54 +183,71 @@ Progress [================================] 44/44 (100%)  0s
 <a href="#looking-for-data" class="anchor"></a>Looking for data</h2>
 <p>We’re going to try to build a tree of these taxa from GenBank Data. Much like accessing NOAA data, we will need to make an API Key. Go <a href="https://www.ncbi.nlm.nih.gov/account/">here</a> and register.</p>
 <p>Now that we have that key, we can access NCBI:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rentrez)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db =</span> <span class="st">"Nucleotide"</span>, <span class="dt">term=</span><span class="st">"Ectatomma"</span>, <span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rentrez)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db =</span> <span class="st">"Nucleotide"</span>, <span class="dt">term=</span><span class="st">"Ectatomma"</span>, <span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>)</a></code></pre></div>
 <pre><code>## Entrez search result with 647 hits (object contains 20 IDs and no web_history object)
 ##  Search term (as translated):  "Ectatomma"[Organism] OR Ectatomma[All Fields]</code></pre>
 <p>Holy moley that’s a lot of data. If we do that for every taxon, we’ll end up with a mess. Why don’t we try to filter it a bit.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">Ectatomma &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db =</span> <span class="st">"Nucleotide"</span>, <span class="dt">term=</span><span class="st">"Ectatomma AND 2018:2019[PDAT]"</span>, <span class="dt">retmax =</span> <span class="dv">100</span>, <span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">Ectatomma &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db =</span> <span class="st">"Nucleotide"</span>, <span class="dt">term=</span><span class="st">"Ectatomma AND 2018:2019[PDAT]"</span>, <span class="dt">retmax =</span> <span class="dv">100</span>, <span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>)</a></code></pre></div>
 <p>So there is a good amount of data for our Ectatomma ants.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="cf">for</span>( seq_start <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>,<span class="dv">50</span>,<span class="dv">100</span>)){</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">     recs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">"nuccore"</span>, <span class="dt">id =</span> Ectatomma<span class="op">$</span>ids,</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">                          <span class="dt">rettype=</span><span class="st">"fasta"</span>, <span class="dt">retmax=</span><span class="dv">50</span>, <span class="dt">retstart=</span>seq_start)</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">     <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(recs, <span class="dt">file=</span><span class="st">"Ect.seqs.fasta"</span>, <span class="dt">append=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">     <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(seq_start<span class="op">+</span><span class="dv">49</span>, <span class="st">"sequences downloaded</span><span class="ch">\r</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"> }</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="cf">for</span>( seq_start <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>,<span class="dv">50</span>,<span class="dv">100</span>)){</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">     recs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">"nuccore"</span>, <span class="dt">id =</span> Ectatomma<span class="op">$</span>ids,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">                          <span class="dt">rettype=</span><span class="st">"fasta"</span>, <span class="dt">retmax=</span><span class="dv">50</span>, <span class="dt">retstart=</span>seq_start)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">     <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(recs, <span class="dt">file=</span><span class="st">"Ect.seqs.fasta"</span>, <span class="dt">append=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">     <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(seq_start<span class="op">+</span><span class="dv">49</span>, <span class="st">"sequences downloaded</span><span class="ch">\r</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"> }</a></code></pre></div>
 <pre><code>## 50 sequences downloaded</code></pre>
 <p>Now, let’s look at this file. What do we notice about it?</p>
 <p>All right, let’s move on to trying to write a function that will return all IDs for all of the ants.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">search_year &lt;-<span class="st"> </span><span class="cf">function</span>(ant){</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">    search_returns &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>()</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">    query &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(ant, <span class="st">" AND "</span>, <span class="st">"2012:2019[PDAT]"</span>)</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">    search_returns[ant] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db=</span><span class="st">"Nucleotide"</span>, <span class="dt">term=</span>query, <span class="dt">retmax=</span><span class="dv">20</span>,<span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>))</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/function">return</a></span>(search_returns)</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9">ants &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(resolved_names<span class="op">$</span>unique_name)</a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11">labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(ants,search_year,  <span class="dt">USE.NAMES =</span> T)</a></code></pre></div>
-<pre><code>## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length
-
-## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length
-
-## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length
-
-## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length
-
-## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length
-
-## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length
-
-## Warning in search_returns[ant] &lt;- c(entrez_search(db = "Nucleotide", term =
-## query, : number of items to replace is not a multiple of replacement length</code></pre>
-<p>And finally, let’s write one, together to pull sequences for all of them.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">search_year &lt;-<span class="st"> </span><span class="cf">function</span>(ant){</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">    query &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(ant, <span class="st">" AND "</span>, <span class="st">"2018:2019[PDAT]"</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">    search_returns &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db=</span><span class="st">"Nucleotide"</span>, <span class="dt">term=</span>query, <span class="dt">retmax=</span><span class="dv">20</span>,<span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>))</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/function">return</a></span>(search_returns)</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">ants &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(resolved_names<span class="op">$</span>unique_name)</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(ants,search_year,  <span class="dt">USE.NAMES =</span> T)</a></code></pre></div>
+<p>Have a look at ?sapply. Talk to a partner and see if you can figure out what sapply does.</p>
+<p>So what is the problem with this output? It’s hard to parse - let’s make it easier to pull data for one taxon at a time.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">search_year &lt;-<span class="st"> </span><span class="cf">function</span>(ant){</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">    search_returns =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>()</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">    query &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(ant, <span class="st">" AND "</span>, <span class="st">"2018:2019[PDAT]"</span>)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    search_returns[ant] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db=</span><span class="st">"Nucleotide"</span>, <span class="dt">term=</span>query, <span class="dt">retmax=</span><span class="dv">20</span>,<span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>))</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/function">return</a></span>(search_returns)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">ants &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(resolved_names<span class="op">$</span>unique_name)</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11">labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(ants,search_year,  <span class="dt">USE.NAMES =</span> T)</a></code></pre></div>
+<p>There’s one remaining problem, though. Have a look at your outputs. How do you think we can fix this one? Let’s have a look at when papers related to Xymmer were published:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">xymmer_papers &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db=</span><span class="st">"pmc"</span>, <span class="dt">term=</span><span class="st">"Xymmer"</span>, <span class="dt">retmax=</span><span class="dv">20</span>, <span class="dt">rettype=</span> <span class="st">"text"</span>, <span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">xymmer_papers &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">"pmc"</span>, <span class="dt">term=</span><span class="st">"Xymmer"</span>, <span class="dt">id =</span> xymmer_papers<span class="op">$</span>ids, <span class="dt">retmax=</span><span class="dv">20</span>, <span class="dt">rettype=</span> <span class="st">"text"</span>, <span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>)</a></code></pre></div>
+<p>Does this give you a hint about something that needs to change to get more data?</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">search_year &lt;-<span class="st"> </span><span class="cf">function</span>(ant){</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">    search_returns =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>()</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">    query &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(ant, <span class="st">" AND "</span>, <span class="st">"2018:2019[PDAT]"</span>)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">    search_returns[ant] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_search">entrez_search</a></span>(<span class="dt">db=</span><span class="st">"Nucleotide"</span>, <span class="dt">term=</span>query, <span class="dt">retmax=</span><span class="dv">20</span>,<span class="dt">api_key =</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span>))</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/function">return</a></span>(search_returns)</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">ants &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(resolved_names<span class="op">$</span>unique_name)</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(ants,search_year,  <span class="dt">USE.NAMES =</span> T)</a></code></pre></div>
+<p>Now, we’re going to get the genetc data.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">search_seq &lt;-<span class="st"> </span><span class="cf">function</span>(ant){</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">     recs[ant] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rentrez/topics/entrez_fetch">entrez_fetch</a></span>(<span class="dt">db=</span><span class="st">"nuccore"</span>, <span class="dt">id =</span> ant,</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">                          <span class="dt">rettype=</span><span class="st">"fasta"</span>, <span class="dt">retmax=</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">     <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(recs, <span class="dt">file=</span><span class="st">"Ants.seqs.fasta"</span>, <span class="dt">append=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/function">return</a></span>(recs)</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">seq_returns &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(labels, search_seq,  <span class="dt">USE.NAMES =</span> T)</a></code></pre></div>
 </div>
   </div>
 
