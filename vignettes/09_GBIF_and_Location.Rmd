@@ -1,0 +1,214 @@
+---
+title: "GBIF And Spatial Data"
+output: html_document
+---
+
+This week, we will be starting with geospatial data and mapping. Today, we will begin with locality data in GBIF. GBIF is a website for aggregating location data from other sources.
+We will work with two packages today.
+
+```{r, eval=FALSE}
+install.packages("rgbif")
+install.packages("leaflet")
+```
+
+```{r}
+library(rotl)
+library(rgbif)
+library(leaflet)
+```
+
+
+First, we're going to get unique identifiers for our taxon name.
+
+```{r}
+
+name_suggest("Atta mexicana")
+
+```
+
+
+Next, we're going to use `occ_search` to search the GBIF database for where these things are occurring.
+
+```{r, eval=FALSE}
+ occurences <- occ_search(taxonKey = 5035745, limit = 20)
+
+```
+
+
+Next, we will filter the resultant dataset to name and lat and longitude data.
+
+```{r}
+library(tidyverse)
+no_na <- occurences$data %>%
+  select(scientificName, decimalLatitude, decimalLongitude) %>% 
+  drop_na()
+
+```
+
+
+And finally, we will plot.
+
+```{r}
+k <- leaflet::leaflet(no_na) %>% 
+addTiles() %>% 
+addMarkers(~decimalLongitude, ~decimalLatitude, popup = no_na$scientificName)
+
+```
+
+```{r, eval=FALSE}
+#Get GBIF ids for our vector of species
+ids <-c()
+  for (ant in ants){
+   print(ant)
+   raw <- name_suggest(ant)
+   print(raw)
+   ids[ant] <- c(raw$key)
+}
+
+
+#Search GBIF for the vector of IDs.
+df <- lapply(ids, occ_search, return="data")
+
+#Combine the resultant dataframes into one large dataframe
+mega_df <- bind_rows(df, .id = "column_label")
+
+#Drop rows with NA values in the lat and long
+no_na <- mega_df %>%
+select(scientificName, decimalLatitude, decimalLongitude) %>%
+drop_na()
+
+# Plot the dataframe of observations
+k <- leaflet::leaflet(no_na) %>%
+addTiles() %>%
+addMarkers(~decimalLongitude, ~decimalLatitude, popup = no_na$scientificName)
+
+```
+
+
+
+# GeoSpatial Choose Your Own Adventure
+
+```{r}
+
+leaflet(no_na) %>% 
+  addTiles() %>% 
+  addCircles(~decimalLongitude, ~decimalLatitude)
+
+```
+
+
+```{r}
+
+leaflet(no_na) %>% 
+  addTiles() %>% 
+  addCircleMarkers(~decimalLongitude, ~decimalLatitude, radius = runif(100, 4, 10), color = c('red'))
+
+```
+
+
+```{r}
+
+leaflet(no_na) %>%
+  addTiles() %>% 
+  addMarkers(~decimalLongitude, ~decimalLatitude, clusterOptions = markerClusterOptions())
+```
+
+
+```{r}
+no_na %>% 
+  group_by(decimalLatitude) %>% 
+  mutate(n_areas = n())  %>% 
+  leaflet() %>%
+  addTiles() %>% 
+  addCircleMarkers(~decimalLongitude, ~decimalLatitude, radius = ~n_areas, color = c('red'))
+
+```
+
+
+```{r}
+
+pal <- colorBin(
+  palette = "Blues",
+  no_na$scientificName,
+  pretty = TRUE)
+
+levs <- factor(no_na$scientificName)
+factpal <- colorFactor(topo.colors(5), levs)
+
+no_na %>% 
+  group_by(scientificName) %>% 
+  leaflet() %>%
+  addTiles() %>% 
+  addCircleMarkers(
+    ~decimalLongitude, 
+    ~decimalLatitude,
+    color = ~factpal(scientificName),
+    stroke = FALSE, fillOpacity = 0.5
+  ) 
+
+
+```
+
+
+```{r}
+
+pal <- colorBin(
+  palette = "Blues",
+  no_na$scientificName,
+  pretty = TRUE)
+
+levs <- factor(no_na$scientificName)
+factpal <- colorFactor(topo.colors(5), levs)
+
+no_na %>% 
+  group_by(scientificName) %>% 
+  leaflet() %>%
+  addTiles() %>% 
+  addCircleMarkers(
+    ~decimalLongitude, 
+    ~decimalLatitude,
+    color = ~factpal(scientificName),
+    stroke = FALSE, fillOpacity = 0.5
+  ) %>% 
+    setView( lng = -100,
+            lat = 20,
+            zoom = 11 ) %>%
+  setMaxBounds( lng1 = -100,
+                lat1 = 19.432241,
+                lng2 = -98,
+                lat2 = 20 )
+
+```
+
+## Mapping a tree to space
+
+First, we will need Liam Revell's Phytools package
+
+```{r, eval=FALSE}
+devtools::install_github("liamrevell/phytools")
+```
+
+Next, we will need to remove the citation info from the columns so that we can have simple genus_species names.
+```{r}
+split_names <- no_na %>% 
+mutate(genus = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][1])) %>% mutate(species = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][2])) %>% 
+unite(col = genusSpecies, genus, species)
+```
+
+
+Now, let's use ROTL to make sure we don't have spelling errors.
+```{r, eval=FALSE}
+
+# Use ROTL to resolve names
+
+```
+
+Next, we will query a tree from open tree
+```{r}
+#Query a tree
+
+```
+
+```{r}
+
+# Syn
