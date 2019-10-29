@@ -132,12 +132,12 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"> occurences &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgbif/topics/occ_search">occ_search</a></span>(<span class="dt">taxonKey =</span> <span class="dv">5035745</span>, <span class="dt">limit =</span> <span class="dv">20</span>)</a></code></pre></div>
 <p>Next, we will filter the resultant dataset to name and lat and longitude data.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a></code></pre></div>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
 ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
 ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
 ## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">no_na &lt;-<span class="st"> </span>occurences<span class="op">$</span>data <span class="op">%&gt;%</span></a>
@@ -274,18 +274,33 @@
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/leaflet">leaflet</a></span>(no_na) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addTiles</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addCircles</a></span>(<span class="op">~</span>decimalLongitude, <span class="op">~</span>decimalLatitude)</a></code></pre></div>
+<div id="draw-point-sizes-from-a-distribution" class="section level3">
+<h3 class="hasAnchor">
+<a href="#draw-point-sizes-from-a-distribution" class="anchor"></a>Draw point sizes from a distribution</h3>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/leaflet">leaflet</a></span>(no_na) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb33-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addTiles</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb33-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addCircleMarkers</a></span>(<span class="op">~</span>decimalLongitude, <span class="op">~</span>decimalLatitude, <span class="dt">radius =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">100</span>, <span class="dv">4</span>, <span class="dv">10</span>), <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'red'</span>))</a></code></pre></div>
+</div>
+<div id="cluster-observations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cluster-observations" class="anchor"></a>Cluster observations</h3>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/leaflet">leaflet</a></span>(no_na) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addTiles</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addMarkers</a></span>(<span class="op">~</span>decimalLongitude, <span class="op">~</span>decimalLatitude, <span class="dt">clusterOptions =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-options">markerClusterOptions</a></span>())</a></code></pre></div>
+</div>
+<div id="size-points-by-number-of-observations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#size-points-by-number-of-observations" class="anchor"></a>Size points by number of observations</h3>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">no_na <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(decimalLatitude) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_areas =</span> <span class="kw">n</span>())  <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/leaflet">leaflet</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb35-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addTiles</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb35-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/map-layers">addCircleMarkers</a></span>(<span class="op">~</span>decimalLongitude, <span class="op">~</span>decimalLatitude, <span class="dt">radius =</span> <span class="op">~</span>n_areas, <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'red'</span>))</a></code></pre></div>
+</div>
+<div id="color-points-by-species" class="section level3">
+<h3 class="hasAnchor">
+<a href="#color-points-by-species" class="anchor"></a>Color points by species</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">pal &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/colorNumeric">colorBin</a></span>(</a>
 <a class="sourceLine" id="cb36-2" data-line-number="2">  <span class="dt">palette =</span> <span class="st">"Blues"</span>,</a>
 <a class="sourceLine" id="cb36-3" data-line-number="3">  no_na<span class="op">$</span>scientificName,</a>
@@ -304,6 +319,10 @@
 <a class="sourceLine" id="cb36-16" data-line-number="16">    <span class="dt">color =</span> <span class="op">~</span><span class="kw">factpal</span>(scientificName),</a>
 <a class="sourceLine" id="cb36-17" data-line-number="17">    <span class="dt">stroke =</span> <span class="ot">FALSE</span>, <span class="dt">fillOpacity =</span> <span class="fl">0.5</span></a>
 <a class="sourceLine" id="cb36-18" data-line-number="18">  ) </a></code></pre></div>
+</div>
+<div id="set-view-width" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-view-width" class="anchor"></a>Set view Width</h3>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">pal &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/leaflet/topics/colorNumeric">colorBin</a></span>(</a>
 <a class="sourceLine" id="cb37-2" data-line-number="2">  <span class="dt">palette =</span> <span class="st">"Blues"</span>,</a>
 <a class="sourceLine" id="cb37-3" data-line-number="3">  no_na<span class="op">$</span>scientificName,</a>
@@ -329,6 +348,12 @@
 <a class="sourceLine" id="cb37-23" data-line-number="23">                <span class="dt">lat1 =</span> <span class="fl">19.432241</span>,</a>
 <a class="sourceLine" id="cb37-24" data-line-number="24">                <span class="dt">lng2 =</span> <span class="dv">-98</span>,</a>
 <a class="sourceLine" id="cb37-25" data-line-number="25">                <span class="dt">lat2 =</span> <span class="dv">20</span> )</a></code></pre></div>
+</div>
+<div id="extra-map-color-options-base-maps" class="section level3">
+<h3 class="hasAnchor">
+<a href="#extra-map-color-options-base-maps" class="anchor"></a>Extra map color options (base maps)</h3>
+<p><a href="https://rstudio.github.io/leaflet/basemaps.html" class="uri">https://rstudio.github.io/leaflet/basemaps.html</a></p>
+</div>
 <div id="mapping-a-tree-to-space" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mapping-a-tree-to-space" class="anchor"></a>Mapping a tree to space</h2>
@@ -339,10 +364,11 @@
 <a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">mutate</span>(<span class="dt">genus =</span> <span class="kw">map_chr</span>(scientificName, <span class="cf">function</span>(s) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/strsplit">strsplit</a></span>(s, <span class="st">" "</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>])) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">species =</span> <span class="kw">map_chr</span>(scientificName, <span class="cf">function</span>(s) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/strsplit">strsplit</a></span>(s, <span class="st">" "</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb39-3" data-line-number="3"><span class="kw">unite</span>(<span class="dt">col =</span> genusSpecies, genus, species)</a></code></pre></div>
 <p>Now, let’s use ROTL to make sure we don’t have spelling errors.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># Use ROTL to resolve names</span></a></code></pre></div>
-<p>Next, we will query a tree from open tree</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co">#Query a tree</span></a></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># Syn</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">no_bold &lt;-<span class="st"> </span>split_names[ <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grep</a></span>(<span class="st">"BOLD"</span>, split_names<span class="op">$</span>genusSpecies, <span class="dt">invert =</span> <span class="ot">TRUE</span>) , ]</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">reconciled_names &lt;-<span class="st"> </span>rotl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rotl/topics/tnrs_match_names">tnrs_match_names</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(no_bold<span class="op">$</span>genusSpecies))</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3">good_names &lt;-<span class="st">  </span>reconciled_names <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="st">  </span><span class="kw">drop_na</span>()</a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co"># Use ROTL to resolve names</span></a></code></pre></div>
 </div>
 </div>
   </div>

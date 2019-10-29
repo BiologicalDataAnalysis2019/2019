@@ -6,7 +6,7 @@ output: html_document
 This week, we will be starting with geospatial data and mapping. Today, we will begin with locality data in GBIF. GBIF is a website for aggregating location data from other sources.
 We will work with two packages today.
 
-```{r, eval=FALSE}
+```{r}
 install.packages("rgbif")
 install.packages("leaflet")
 ```
@@ -21,6 +21,7 @@ library(leaflet)
 First, we're going to get unique identifiers for our taxon name.
 
 ```{r}
+ants <- c("Martialis", "Atta", "Ectatomma", "Tatuidris", "Aneuretus", "Xymmer", "Aenictus")
 
 name_suggest("Atta mexicana")
 
@@ -29,7 +30,7 @@ name_suggest("Atta mexicana")
 
 Next, we're going to use `occ_search` to search the GBIF database for where these things are occurring.
 
-```{r, eval=FALSE}
+```{r}
  occurences <- occ_search(taxonKey = 5035745, limit = 20)
 
 ```
@@ -55,8 +56,10 @@ addMarkers(~decimalLongitude, ~decimalLatitude, popup = no_na$scientificName)
 
 ```
 
-```{r, eval=FALSE}
+```{r}
 #Get GBIF ids for our vector of species
+
+
 ids <-c()
   for (ant in ants){
    print(ant)
@@ -88,7 +91,7 @@ addMarkers(~decimalLongitude, ~decimalLatitude, popup = no_na$scientificName)
 
 # GeoSpatial Choose Your Own Adventure
 
-```{r}
+```{r, eval=FALSE}
 
 leaflet(no_na) %>% 
   addTiles() %>% 
@@ -96,8 +99,9 @@ leaflet(no_na) %>%
 
 ```
 
+### Draw point sizes from a distribution
 
-```{r}
+```{r, eval=FALSE}
 
 leaflet(no_na) %>% 
   addTiles() %>% 
@@ -105,16 +109,19 @@ leaflet(no_na) %>%
 
 ```
 
+### Cluster observations
 
-```{r}
+```{r, eval=FALSE}
 
 leaflet(no_na) %>%
   addTiles() %>% 
   addMarkers(~decimalLongitude, ~decimalLatitude, clusterOptions = markerClusterOptions())
 ```
 
+### Size points by number of observations
 
-```{r}
+
+```{r, eval=FALSE}
 no_na %>% 
   group_by(decimalLatitude) %>% 
   mutate(n_areas = n())  %>% 
@@ -125,7 +132,9 @@ no_na %>%
 ```
 
 
-```{r}
+### Color points by species
+
+```{r, eval=FALSE}
 
 pal <- colorBin(
   palette = "Blues",
@@ -150,7 +159,9 @@ no_na %>%
 ```
 
 
-```{r}
+### Set view Width
+
+```{r, eval=FALSE}
 
 pal <- colorBin(
   palette = "Blues",
@@ -180,6 +191,11 @@ no_na %>%
 
 ```
 
+### Extra map color options (base maps)
+
+https://rstudio.github.io/leaflet/basemaps.html
+
+
 ## Mapping a tree to space
 
 First, we will need Liam Revell's Phytools package
@@ -189,7 +205,7 @@ devtools::install_github("liamrevell/phytools")
 ```
 
 Next, we will need to remove the citation info from the columns so that we can have simple genus_species names.
-```{r}
+```{r, eval=FALSE}
 split_names <- no_na %>% 
 mutate(genus = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][1])) %>% mutate(species = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][2])) %>% 
 unite(col = genusSpecies, genus, species)
@@ -199,16 +215,10 @@ unite(col = genusSpecies, genus, species)
 Now, let's use ROTL to make sure we don't have spelling errors.
 ```{r, eval=FALSE}
 
+no_bold <- split_names[ grep("BOLD", split_names$genusSpecies, invert = TRUE) , ]
+reconciled_names <- rotl::tnrs_match_names(unique(no_bold$genusSpecies))
+good_names <-  reconciled_names %>%
+  drop_na()
 # Use ROTL to resolve names
 
 ```
-
-Next, we will query a tree from open tree
-```{r}
-#Query a tree
-
-```
-
-```{r}
-
-# Syn
